@@ -31,12 +31,21 @@ function RowPost(props) {
           autoplay: 1,
         }}
 
+        let poster;
+
+    if (props.class === "posters__poster") {
+        poster = true;
+    }
+    if (props.class === "posters__smallPoster") {
+        poster = false;
+    }
+
     return (
         <div className='row'>
             <h2>{props.title}</h2>
             <div className='posters'>
                 {movie.map((obj)=>
-                <img onClick={()=>{handleMovie(obj.id)}} className='poster' alt='poster' src={`${imgUrl+obj.backdrop_path}`} />
+                <img onClick={()=>{handleMovie(obj.id)}} className={props.class} alt='poster' src={poster ? `${imgUrl + obj.poster_path}` : `${imgUrl + obj.backdrop_path}`} />
                 )}
                 
             </div>
